@@ -10,4 +10,6 @@ Technologies:
 
 How to run:
 =
-mvn clean test 
+mvn clean test (to run the tests with default chrome browser)
+
+mvn clean test -Dbrowser=browserName (to run t he tests with different browsers. available options chrome, firefox, ie, edge)
