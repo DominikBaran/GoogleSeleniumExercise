@@ -1,5 +1,6 @@
 package steps;
 
+import driver.DriverManagerFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.jbehave.core.annotations.*;
 import org.openqa.selenium.WebDriver;
@@ -23,24 +24,17 @@ public class GoogleSearchSteps {
 
     @BeforeScenario
     public void setupScenario() {
-        driver = WebDriverManager.chromedriver().create();
-        driver.manage().window().maximize();
+        driver = DriverManagerFactory.getManager().getDriver();
     }
 
     @AfterScenario
     public void tearDownScenario() {
-        this.tearDown();
+        DriverManagerFactory.getManager().getDriver().quit();
     }
 
     @AfterStory
     public void tearDownStory() {
-        this.tearDown();
-    }
-
-    private void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
+        DriverManagerFactory.getManager().getDriver().quit();
     }
 
     @Given("consumer navigates to google search page")
