@@ -4,8 +4,6 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.jbehave.core.annotations.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import pages.GoogleMainPage;
 import pages.GoogleSearchPage;
 import pages.GoogleSearchResultsPage;
@@ -25,11 +23,7 @@ public class GoogleSearchSteps {
 
     @BeforeScenario
     public void setupScenario() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("-incognito");
-        options.addArguments("--disable-popup-blocking");
-
-        driver = new ChromeDriver(options);
+        driver = WebDriverManager.chromedriver().create();
         driver.manage().window().maximize();
     }
 
